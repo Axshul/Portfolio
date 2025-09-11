@@ -1,6 +1,6 @@
 # 🌐 Portfolio Website — Anshul Namdev
 
-Welcome to the repository of my **personal portfolio website** 🎉  
+Welcome to the repository of my **personal portfolio website** 
 It’s a showcase of my work as a **Frontend Developer** — featuring projects, skills, and my journey of building **fast, lightweight & engaging digital experiences**.
 
 ---
