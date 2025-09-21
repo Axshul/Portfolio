@@ -96,7 +96,10 @@
           <div class="about-image">
             <div class="image-container">
               <div class="gradient-border">
-                <img src="myPhoto.jpg" alt="Profile Image">
+                <div class="image-container">
+  <img src="myPhoto.jpg" alt="PHOTO" />
+</div>
+
                 <div class="image-decoration">
                   <div class="corner corner-top-left"></div>
                   <div class="corner corner-top-right"></div>
@@ -2700,6 +2703,26 @@
         font-size: 1rem;
       }
     }
+    .image-container {
+  width: 100%;
+  max-width: 800px; /* Adjust based on your design */
+  height: auto;
+  border: 4px solid #ccc; /* Optional: add a subtle border */
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  object-fit: contain; /* Prevents distortion */
+  transition: transform 0.3s ease;
+}
+
+/* Optional: Add hover effects for interactivity */
+.image-container:hover img {
+  transform: scale(1.05);
+}
+
   </style>
 
   <script>
@@ -3390,5 +3413,6 @@
   </script>
 </body>
 </html>
+
 
 
