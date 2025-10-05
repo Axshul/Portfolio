@@ -1536,57 +1536,14 @@
 
         // Resume download functionality
         function downloadResume() {
-            // Create a sample resume content
-            const resumeContent = `
-ANSHUL NAMDEV
-Full Stack Developer & AI Automation Expert
-Email: anshul2006n@gmail.com | Location: Bhopal, Madhya Pradesh, India
-LinkedIn: linkedin.com/in/anshul-namdev-b149b5329 | GitHub: github.com/Axshul
-
-EDUCATION
-Bachelor of Technology - Computer Science & Engineering
-Currently in 3rd Semester (37.5% Complete)
-Relevant Coursework: Programming Fundamentals, Data Structures, OOP, Database Management, Computer Networks
-
-TECHNICAL SKILLS
-Frontend: React.js, JavaScript, HTML5, CSS3, Tailwind CSS
-Backend: Java, Python, Node.js
-Databases: PostgreSQL, Supabase, MongoDB
-Specializations: AI Automation, Workflow Optimization, Business Process Automation
-
-PROJECTS
-• AI Workflow Automation - Intelligent business process automation using Python and AI models
-• MERN Stack Application - Full-stack web application with React, Node.js, and MongoDB
-• Java Enterprise Solution - Scalable enterprise application with robust backend architecture
-
-EXPERIENCE
-• Full Stack Development with focus on MERN stack
-• AI-powered automation solutions for business processes
-• Database architecture and management
-• Remote collaboration with international teams
-
-AVAILABILITY
-Currently available for freelance projects and full-time opportunities
-Open to remote work and global collaborations
-
-CONTACT
-Email: anshul2006n@gmail.com
-Portfolio: Available upon request
-            `;
-
-            // Create and download the resume as PDF-like text file
-            const blob = new Blob([resumeContent], { type: 'text/plain' });
-            const url = window.URL.createObjectURL(blob);
+            // Create a link to download the actual resume.pdf file
             const a = document.createElement('a');
-            a.href = url;
+            a.href = 'resume.pdf';
             a.download = 'resume.pdf';
+            a.target = '_blank'; // Fallback to open in new tab if download fails
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-            
-            // Show download confirmation
-            alert('Resume downloaded successfully! Note: This is a text version. For the formatted PDF version, please contact anshul2006n@gmail.com');
         }
 
         // Mobile menu functionality
@@ -1657,5 +1614,5 @@ Portfolio: Available upon request
             }
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'989d9c2784ab85b4',t:'MTc1OTY3NDU1NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'989da593f72b3a37',t:'MTc1OTY3NDk0MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
