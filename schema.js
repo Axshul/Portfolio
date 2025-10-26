@@ -29,10 +29,12 @@
         let chatStarted = false;
         let messageCount = 0;
 
-        function sendMessage(event) {
+        async function sendMessage(event) {
             event.preventDefault();
             const input = document.getElementById('messageInput');
             const message = input.value.trim();
+            
+            console.log('sendMessage called with:', message);
             
             if (message) {
                 if (!chatStarted) {
@@ -44,12 +46,18 @@
                 // Show typing indicator
                 showTypingIndicator();
                 
-                // Simulate AI response with realistic delay
-                setTimeout(() => {
+                try {
+                    console.log('Calling generateResponse...');
+                    // Get response from webhook
+                    const response = await generateResponse(message);
+                    console.log('Received response:', response);
                     hideTypingIndicator();
-                    const response = generateResponse(message);
                     addMessage(response, 'bot');
-                }, 1500 + Math.random() * 1000); // 1.5-2.5 second delay
+                } catch (error) {
+                    console.error('Error in sendMessage:', error);
+                    hideTypingIndicator();
+                    addMessage("I apologize, but I'm having trouble connecting to the server. Please try again later.", 'bot');
+                }
             }
         }
 
@@ -136,25 +144,57 @@
             }, 100);
         }
 
-        function generateResponse(message) {
-            const lowerMessage = message.toLowerCase();
+        async function generateResponse(message) {
+            const webhookUrl = 'https://71245c5b4176.ngrok-free.app/webhook-test/bf0226c3-ef03-4eda-b40f-e7be75098038';
             
-            for (const [key, response] of Object.entries(responses)) {
-                if (lowerMessage.includes(key)) {
-                    return response;
+            console.log('Sending message to webhook:', message);
+            
+            try {
+                // First, check if the webhook is accessible
+                try {
+                    console.log('Checking webhook availability...');
+                    const checkResponse = await fetch(webhookUrl, {
+                        method: 'OPTIONS',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    console.log('OPTIONS response:', checkResponse.status);
+                } catch (error) {
+                    console.log('OPTIONS check failed:', error);
                 }
+
+                console.log('Making fetch request to:', webhookUrl);
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        message: message,
+                        timestamp: new Date().toISOString(),
+                        source: 'portfolio-chatbot'
+                    })
+                });
+
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    console.error('Response not OK:', response.status, response.statusText);
+                    throw new Error(`Network response was not ok: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('Received response data:', data);
+                
+                return data.response || "I apologize, but I couldn't process your request at the moment. Please try again later.";
+                
+            } catch (error) {
+                console.error('Error in generateResponse:', error);
+                return "I apologize, but I'm having trouble connecting to the server. Please try again later.";
             }
-            
-            // Default responses with more variety
-            const defaultResponses = [
-                "That's a great question! Anshul would be happy to discuss this with you directly. You can reach him at anshul2006n@gmail.com for detailed information about his work and experience.",
-                "I'd recommend connecting with Anshul directly for more specific details about this topic. He's very responsive to inquiries at anshul2006n@gmail.com and loves discussing new opportunities.",
-                "Anshul is always excited to discuss new projects and collaborations! Feel free to reach out to him at anshul2006n@gmail.com to explore this further and get personalized insights.",
-                "For the most accurate and detailed information about this, I'd suggest contacting Anshul directly at anshul2006n@gmail.com. He'll be able to provide you with comprehensive insights and answer any specific questions you might have!",
-                "That's an interesting topic! While I can provide general information, Anshul would be the best person to give you detailed insights. You can connect with him at anshul2006n@gmail.com or through his social media profiles."
-            ];
-            
-            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
         }
 
         // Resume download functionality
