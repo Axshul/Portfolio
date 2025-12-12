@@ -101,27 +101,28 @@ export const Projects = () => {
                   <div className="absolute inset-[-1px] rounded-2xl bg-gradient-to-r from-primary/50 via-accent/50 to-primary/50 blur-sm" />
                 </div>
 
-                {/* Featured badge */}
-                {project.featured && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ delay: 0.5 + i * 0.1 }}
-                    className="absolute top-4 right-4 px-3 py-1 text-xs font-mono bg-primary/20 text-primary rounded-full border border-primary/30"
-                  >
-                    Featured
-                  </motion.div>
-                )}
-
                 <div className="relative z-10">
                   {/* Header */}
                   <div className="flex items-start justify-between mb-6">
-                    <motion.div 
-                      className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors border border-primary/20"
-                      whileHover={{ rotate: 5, scale: 1.05 }}
-                    >
-                      <project.icon className="w-7 h-7 text-primary" />
-                    </motion.div>
+                    <div className="flex items-center gap-4">
+                      <motion.div 
+                        className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors border border-primary/20"
+                        whileHover={{ rotate: 5, scale: 1.05 }}
+                      >
+                        <project.icon className="w-7 h-7 text-primary" />
+                      </motion.div>
+                      {/* Featured badge - moved next to icon */}
+                      {project.featured && (
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                          transition={{ delay: 0.5 + i * 0.1 }}
+                          className="px-3 py-1 text-xs font-mono bg-primary/20 text-primary rounded-full border border-primary/30"
+                        >
+                          Featured
+                        </motion.div>
+                      )}
+                    </div>
                     <div className="flex gap-2">
                       {project.github && (
                         <motion.a

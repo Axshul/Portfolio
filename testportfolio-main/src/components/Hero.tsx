@@ -79,13 +79,13 @@ export const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 text-center">
-        {/* Status badge */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 text-center pt-20">
+        {/* Status badge - moved down to avoid navbar overlap */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full glass-morphism mb-10 border border-primary/20"
+          className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full glass-morphism mb-10 border border-primary/20 mt-8"
         >
           <motion.span 
             className="w-2.5 h-2.5 bg-primary rounded-full"
@@ -194,7 +194,7 @@ export const Hero = () => {
             Get In Touch
           </motion.a>
           <motion.a
-            href="/resume.pdf"
+            href="/Portfolio/resume.pdf"
             download="Anshul_Namdev_Resume.pdf"
             className="group px-8 py-4 glass-morphism font-semibold rounded-xl border border-border/50 hover:border-primary/50 transition-colors flex items-center justify-center gap-2"
             whileHover={{ scale: 1.02, y: -2 }}
@@ -205,12 +205,12 @@ export const Hero = () => {
           </motion.a>
         </motion.div>
 
-        {/* Social Links with stagger */}
+        {/* Social Links with stagger - moved up to avoid scroll indicator overlap */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.4 }}
-          className="flex justify-center gap-3"
+          className="flex justify-center gap-3 mb-20"
         >
           {socialLinks.map((social, i) => (
             <motion.a
@@ -232,12 +232,12 @@ export const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - positioned to the right to avoid social links overlap */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        className="absolute bottom-8 right-8 z-10"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}

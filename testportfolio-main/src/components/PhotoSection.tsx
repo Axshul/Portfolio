@@ -76,7 +76,7 @@ export const PhotoSection = () => {
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary via-accent to-primary animate-spin-slow opacity-50" style={{ animationDuration: "8s" }} />
               <div className="relative w-full h-full rounded-full bg-card overflow-hidden">
                 <img 
-                  src="/myPhoto.jpg" 
+                  src="/Portfolio/myPhoto.jpg" 
                   alt="Anshul Namdev - Full Stack Developer & AI Automation Expert" 
                   className="w-full h-full object-cover"
                   onError={(e) => {
